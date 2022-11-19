@@ -1,4 +1,5 @@
 import React from 'react'
+import './Quizz.css'
 import yellowOrnament from '../assets/yellow-ornament.png'
 import blueOrnament from '../assets/blue-ornament.png'
 
