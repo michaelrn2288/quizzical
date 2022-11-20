@@ -33,11 +33,20 @@ main {
   align-items: center;
 }
 
+.initial-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.initial-screen>* {
+  transition: 1s;
+}
+
 h1 {
   font-size: 2.5rem;
   margin: 0;
   padding: 0;
-  transition: 1s;
 }
 
 main {
@@ -78,7 +87,7 @@ button:hover {
   bottom: 0;
 }
 
-.will-fade {
+.will-fade, .will-fade>* {
   opacity: 0;
   transition: 0.5s;
   font-size: 0;

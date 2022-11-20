@@ -33,11 +33,12 @@ export default function App() {
   return (
     <div>
       <main>
-        <h1 className={quizWillStart && 'will-fade'}>Quizzical</h1>
-        
-        <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
+        <div className= {`initial-screen ${quizWillStart && 'will-fade'} `} >
+          <h1>Quizzical</h1>
+          <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
+        </div>
         <Question />
-        <button onClick={()=> setQuizWillStart(state => !state) }>Start quiz</button>
+        <button onClick={() => setQuizWillStart(state => !state)}>Start quiz</button>
       </main>
 
 
