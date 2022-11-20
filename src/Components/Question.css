@@ -7,6 +7,11 @@
     margin-bottom: 2rem;
 }
 
+.question-container>* {
+    animation-name: enter-questions;
+    animation-duration: 1.5s;
+}
+
 .question {
     font-weight: 700;
     font-size: 1.3rem;
@@ -24,4 +29,15 @@
     border-radius: 12px;
     padding: 0.3rem 1.5rem;
     font-weight: 500;
+}
+
+@keyframes enter-questions{
+    from {
+        font-size: 0;
+        opacity: 0;
+        border: none;
+    }
+    to {
+        opacity: 1;
+    }
 }

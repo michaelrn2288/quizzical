@@ -17,6 +17,14 @@ export default function App() {
   const [quizStarted, setQuizStarted] = React.useState(false)
   const [quizWillStart, setQuizWillStart] = React.useState(false)
 
+  function startQuiz() {
+    setQuizWillStart(prevState => !prevState)
+    setTimeout(() => {
+      setQuizStarted(prevState => !prevState)
+      setQuizWillStart(prevState => !prevState)
+    }, 600)
+  }
+
 
   function consoleLogAPI() {
     fetch('https://opentdb.com/api.php?amount=5')
@@ -33,12 +41,14 @@ export default function App() {
   return (
     <div>
       <main>
-        <div className= {`initial-screen ${quizWillStart && 'will-fade'} `} >
-          <h1>Quizzical</h1>
-          <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
-        </div>
-        <Question />
-        <button onClick={() => setQuizWillStart(state => !state)}>Start quiz</button>
+        {!quizStarted &&
+          <div className={`initial-screen ${quizWillStart && 'will-fade'} `} >
+            <h1>Quizzical</h1>
+            <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
+          </div>
+        }
+        {quizStarted && <Question />}
+        <button onClick={startQuiz}>Start quiz</button>
       </main>
 
 
