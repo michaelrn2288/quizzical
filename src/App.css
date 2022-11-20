@@ -3,10 +3,17 @@
 
 }
 
+:root {
+  --blue-dark: #293264;
+  --blue-medium: #4D5B9E;
+  --green: #94D7A2;
+  --red-light: #F8BCBC;
+}
+
 html {
   height: 100%;
   font-family: 'Karla', sans-serif;
-  color: #293264;
+  color: var(--blue-dark);
 }
 
 body {

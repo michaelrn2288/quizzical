@@ -9,7 +9,10 @@ export default function Quizz() {
         <div>
             <main>
                 <h1>Quizzical</h1>
+                <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
+            <button>Start quiz</button>
             </main>
+
 
             <img src={yellowOrnament} className='yellow-ornament' />
             <img src={blueOrnament} className='blue-ornament' />
