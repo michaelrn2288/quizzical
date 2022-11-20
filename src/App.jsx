@@ -1,10 +1,22 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import yellowOrnament from './assets/yellow-ornament.png'
 import blueOrnament from './assets/blue-ornament.png'
 import Question from './Components/Question'
 
+/**
+ * State quizWillStart will be used to change components class to "will-fade",
+ * to add an animation of transitional disappearing.
+ * 
+ * setQuizWillStart will be paired with a setIterval of setQuizStarted, to gradually change effects then
+ * mount/unmount components.
+ */
+
 export default function App() {
+
+  const [quizStarted, setQuizStarted] = React.useState(false)
+  const [quizWillStart, setQuizWillStart] = React.useState(false)
+
 
   function consoleLogAPI() {
     fetch('https://opentdb.com/api.php?amount=5')
@@ -21,10 +33,11 @@ export default function App() {
   return (
     <div>
       <main>
-        <h1>Quizzical</h1>
+        <h1 className={quizWillStart && 'will-fade'}>Quizzical</h1>
+        
         <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
         <Question />
-        <button>Start quiz</button>
+        <button onClick={()=> setQuizWillStart(state => !state) }>Start quiz</button>
       </main>
 
 
