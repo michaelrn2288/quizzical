@@ -1,19 +1,22 @@
 import { useState } from 'react'
 import './App.css'
 import Quizz from './Components/Quizz'
+import yellowOrnament from './assets/yellow-ornament.png'
+import blueOrnament from './assets/blue-ornament.png'
 
-
-/**
- * *Tela inicial
- * **botão para chamar api
- * 
- * renderizar chamada da api
- * 
- */
-
-export default function App () {
+export default function App() {
 
   return (
-    <Quizz />
+    <div>
+      <main>
+        <h1>Quizzical</h1>
+        <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
+        <button>Start quiz</button>
+      </main>
+
+
+      <img src={yellowOrnament} className='yellow-ornament' />
+      <img src={blueOrnament} className='blue-ornament' />
+    </div>
   )
 }
