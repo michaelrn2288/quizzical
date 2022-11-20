@@ -16,6 +16,9 @@ export default function App() {
 
   const [quizStarted, setQuizStarted] = React.useState(false)
   const [quizWillStart, setQuizWillStart] = React.useState(false)
+  const [questions, setQuestions] = React.useState([1,2,3,4,5])
+
+  const questionsElements = questions.map(question => <Question />)
 
   function startQuiz() {
     setQuizWillStart(prevState => !prevState)
@@ -41,13 +44,14 @@ export default function App() {
   return (
     <div>
       <main>
-        {!quizStarted &&
+        {
+          !quizStarted &&
           <div className={`initial-screen ${quizWillStart && 'will-fade'} `} >
             <h1>Quizzical</h1>
             <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
           </div>
         }
-        {quizStarted && <Question />}
+        {quizStarted && questionsElements}
         <button onClick={startQuiz}>Start quiz</button>
       </main>
 
