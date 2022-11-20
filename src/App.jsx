@@ -1,10 +1,21 @@
 import { useState } from 'react'
 import './App.css'
-import Quizz from './Components/Quizz'
 import yellowOrnament from './assets/yellow-ornament.png'
 import blueOrnament from './assets/blue-ornament.png'
 
 export default function App() {
+
+  function consoleLogAPI () {
+    fetch('https://opentdb.com/api.php?amount=5')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error (`HTTP error: ${response.status}`)
+            }
+            return response.json()
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
+}
 
   return (
     <div>
