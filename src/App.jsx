@@ -20,7 +20,6 @@ export default function App() {
         id={index}
       />)
   })
-  console.log(questionsElements)
 
   function startQuiz() {
     setQuizWillStart(prevState => !prevState)
