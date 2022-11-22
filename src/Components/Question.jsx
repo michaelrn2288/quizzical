@@ -1,16 +1,21 @@
 import React from 'react'
+import Answer from './Answer'
 import './Question.css'
 
 export default function Question(props) {
+
+    const answerElements = [<Answer correct_answer={atob(props.correct_answer)} key = '0' />]
+        for (let i = 0; i < props.incorrect_answers.length; i++) {
+            answerElements.push(<Answer incorrect_answers={atob(props.incorrect_answers[i])} key={i + 1}
+                />) 
+        }
+        
+
     return (
         <div className='question-container'>
             <span className='question'>{atob(props.question)}</span>
             <section className='answer-container'>
-                <div className='answer'>{atob(props.correct_answer)}</div>
-                <div className='answer'>{props.incorrect_answers[0] && atob(props.incorrect_answers[0])}</div>
-                <div className='answer'>{props.incorrect_answers[1] && atob(props.incorrect_answers[1])}</div>
-                <div className='answer'>{props.incorrect_answers[2] && atob(props.incorrect_answers[2])}</div>
-                <div className='answer'>{props.incorrect_answers[3] && atob(props.incorrect_answers[3])}</div>
+                {answerElements}
             </section>
         </div>
     )

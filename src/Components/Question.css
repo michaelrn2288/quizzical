@@ -24,13 +24,6 @@
 
 }
 
-.answer {
-    border: 1px solid var(--blue-medium);
-    border-radius: 12px;
-    padding: 0.2rem 1.5rem;
-    font-weight: 500;
-}
-
 @keyframes enter-questions{
     from {
         font-size: 0;
