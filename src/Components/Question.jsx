@@ -4,13 +4,13 @@ import './Question.css'
 export default function Question(props) {
     return (
         <div className='question-container'>
-            <span className='question'>Question n1</span>
+            <span className='question'>{atob(props.question)}</span>
             <section className='answer-container'>
-                <div className='answer'>answer 1</div>
-                <div className='answer'>answer 2</div>
-                <div className='answer'>answer 3</div>
-                <div className='answer'>answer 4</div>
-                <div className='answer'>answer 5</div>
+                <div className='answer'>{atob(props.correct_answer)}</div>
+                <div className='answer'>{props.incorrect_answers[0] && atob(props.incorrect_answers[0])}</div>
+                <div className='answer'>{props.incorrect_answers[1] && atob(props.incorrect_answers[1])}</div>
+                <div className='answer'>{props.incorrect_answers[2] && atob(props.incorrect_answers[2])}</div>
+                <div className='answer'>{props.incorrect_answers[3] && atob(props.incorrect_answers[3])}</div>
             </section>
         </div>
     )

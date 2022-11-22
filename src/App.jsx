@@ -4,21 +4,23 @@ import yellowOrnament from './assets/yellow-ornament.png'
 import blueOrnament from './assets/blue-ornament.png'
 import Question from './Components/Question'
 
-/**
- * State quizWillStart will be used to change components class to "will-fade",
- * to add an animation of transitional disappearing.
- * 
- * setQuizWillStart will be paired with a setIterval of setQuizStarted, to gradually change effects then
- * mount/unmount components.
- */
-
 export default function App() {
 
   const [quizStarted, setQuizStarted] = React.useState(false)
   const [quizWillStart, setQuizWillStart] = React.useState(false)
-  const [questions, setQuestions] = React.useState([1,2,3,4,5])
+  const [questions, setQuestions] = React.useState()
 
-  const questionsElements = questions.map(question => <Question />)
+  const questionsElements = questions && questions.map((question, index) => {
+    return (
+      <Question
+        question={question.question}
+        correct_answer={question.correct_answer}
+        incorrect_answers={question.incorrect_answers}
+        key={index}
+        id={index}
+      />)
+  })
+  console.log(questionsElements)
 
   function startQuiz() {
     setQuizWillStart(prevState => !prevState)
@@ -28,16 +30,17 @@ export default function App() {
     }, 600)
   }
 
-
-  function consoleLogAPI() {
-    fetch('https://opentdb.com/api.php?amount=5')
+  function getQuestionsFromAPI() {
+    fetch('https://opentdb.com/api.php?amount=5&encode=base64')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`)
         }
         return response.json()
       })
-      .then(data => console.log(data))
+      .then(data => {
+        setQuestions(data.results)
+      })
       .catch(error => console.error(error))
   }
 
@@ -52,7 +55,10 @@ export default function App() {
           </div>
         }
         {quizStarted && questionsElements}
-        <button onClick={startQuiz}>Start quiz</button>
+        <button onClick={() => {
+          startQuiz()
+          getQuestionsFromAPI()
+        }}>Start quiz</button>
       </main>
 
 
