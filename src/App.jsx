@@ -30,7 +30,7 @@ export default function App() {
   }
 
   function getQuestionsFromAPI() {
-    fetch('https://opentdb.com/api.php?amount=5&encode=base64')
+    fetch('https://opentdb.com/api.php?amount=5')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`)
@@ -38,6 +38,7 @@ export default function App() {
         return response.json()
       })
       .then(data => {
+        console.log(data.results)
         setQuestions(data.results)
       })
       .catch(error => console.error(error))
