@@ -3,7 +3,7 @@ import './Answer.css'
 
 export default function Answer (props) {
     return (
-        <div className='answer'>
+        <div className={`answer ${props.correct_answer && 'correct-answer'}`}>
             {props.correct_answer ? props.correct_answer : props.incorrect_answers}
         </div>
     )

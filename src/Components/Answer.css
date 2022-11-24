@@ -4,3 +4,8 @@
     padding: 0.2rem 1.5rem;
     font-weight: 500;
 }
+
+.correct-answer {
+    background-color: var(--green);
+    border-color: var(--green)
+}
