@@ -3,8 +3,11 @@ import './Answer.css'
 
 export default function Answer (props) {
     return (
-        <div className={`answer ${props.correct_answer && 'correct-answer'}`}>
-            {props.correct_answer ? props.correct_answer : props.incorrect_answers}
+        <div
+        className={`answer ${props.isCorrect && 'correct-answer'} ${props.isSelected && 'selected'}`}
+        onClick={()=>props.selectAnswer(props.id)}
+        >
+            {props.answer}
         </div>
     )
 }

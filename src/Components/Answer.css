@@ -7,5 +7,9 @@
 
 .correct-answer {
     background-color: var(--green);
-    border-color: var(--green)
+    border-color: var(--green);
+}
+
+.selected {
+    background-color: black;
 }
