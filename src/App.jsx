@@ -19,6 +19,7 @@ export default function App() {
         incorrect_answers={question.incorrect_answers}
         key={index}
         id={index}
+        quizEnded={quizEnded}
       />)
   })
 
@@ -31,7 +32,7 @@ export default function App() {
   }
 
   function checkAnswers() {
-    console.log('check answers')
+    setQuizEnded(true)
   }
 
   function playAgain() {
@@ -57,7 +58,7 @@ export default function App() {
     <div>
       <main>
         {
-          !quizStarted &&
+          !quizStarted && !quizEnded &&
           <div className={`initial-screen ${quizWillStart && 'will-fade'} `} >
             <h1>Quizzical</h1>
             <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>

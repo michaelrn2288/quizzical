@@ -6,11 +6,6 @@
     cursor: pointer;
 }
 
-.correct-answer {
-    background-color: var(--green);
-    border-color: var(--green);
-}
-
 .selected {
     background-color: var(--blue-light);
     border-color: var(--blue-light);

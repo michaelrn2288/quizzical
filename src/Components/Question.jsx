@@ -55,6 +55,7 @@ export default function Question(props) {
                 isCorrect={answer.isCorrect}
                 answer={answer.answer}
                 selectAnswer={selectAnswer}
+                quizEnded={props.quizEnded}
             />
         )
     })
