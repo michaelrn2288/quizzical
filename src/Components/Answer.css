@@ -11,5 +11,6 @@
 }
 
 .selected {
-    background-color: black;
+    background-color: var(--blue-light);
+    border-color: var(--blue-light);
 }

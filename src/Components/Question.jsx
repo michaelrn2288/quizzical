@@ -7,7 +7,7 @@ export default function Question(props) {
 
     const [answers, setAnswers] = React.useState(createAnswers())
 
-    function createAnswers () {
+    function createAnswers() {
         const answersArray = []
         for (let i = 0; i < props.incorrect_answers.length + 1; i++) {
             answersArray.push({
@@ -16,13 +16,12 @@ export default function Question(props) {
                 isSelected: false,
                 isCorrect: props.incorrect_answers[i] ? false : true,
                 answer: decode(props.incorrect_answers[i] || props.correct_answer),
-                selectAnswer: selectAnswer
             })
         }
 
         const shuffledAnswers = []
 
-        function shuffleAnswers () {
+        function shuffleAnswers() {
             const initAnswersArray = answersArray.length
 
             function extractRandAnswer() {
@@ -37,10 +36,14 @@ export default function Question(props) {
         return shuffledAnswers
     }
 
- 
-
     function selectAnswer(id) {
-        console.log(id)
+        setAnswers(
+            answers.map(answer => {
+                return answer.id === id ?
+                    { ...answer, isSelected: true } :
+                    { ...answer, isSelected: false }
+            })
+        )
     }
 
     const answerElements = answers.map(answer => {
@@ -51,7 +54,7 @@ export default function Question(props) {
                 isSelected={answer.isSelected}
                 isCorrect={answer.isCorrect}
                 answer={answer.answer}
-                selectAnswer={()=>answer.selectAnswer(answer.id)}
+                selectAnswer={selectAnswer}
             />
         )
     })
