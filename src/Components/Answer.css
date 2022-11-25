@@ -6,6 +6,10 @@
     cursor: pointer;
 }
 
+.blocked {
+    cursor: default;
+}
+
 .selected {
     background-color: var(--blue-light);
     border-color: var(--blue-light);

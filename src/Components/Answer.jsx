@@ -18,9 +18,13 @@ export default function Answer(props) {
             style={props.quizEnded && props.isSelected && !props.isCorrect && styleWrongAnswer ||
                 props.quizEnded && props.isCorrect && styleCorrectAnswer ||
                 {}
-             }
-            className={`answer ${props.isCorrect && 'correct-answer'} ${props.isSelected && 'selected'}`}
-            onClick={() => props.selectAnswer(props.id)}
+            }
+            className={
+                `answer ${props.isCorrect && 'correct-answer'}
+                ${props.isSelected && 'selected'}
+                ${props.quizEnded && 'blocked'}
+                `}
+            onClick={!props.quizEnded && (() => props.selectAnswer(props.id))}
         >
             {props.answer}
         </div>
