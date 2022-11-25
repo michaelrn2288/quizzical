@@ -6,9 +6,10 @@ import Question from './Components/Question'
 
 export default function App() {
 
-  const [quizStarted, setQuizStarted] = React.useState(false)
-  const [quizWillStart, setQuizWillStart] = React.useState(false)
   const [questions, setQuestions] = React.useState()
+  const [quizWillStart, setQuizWillStart] = React.useState(false)
+  const [quizStarted, setQuizStarted] = React.useState(false)
+  const [quizEnded, setQuizEnded] = React.useState(false)
 
   const questionsElements = questions && questions.map((question, index) => {
     return (
@@ -27,6 +28,14 @@ export default function App() {
       setQuizStarted(prevState => !prevState)
       setQuizWillStart(prevState => !prevState)
     }, 600)
+  }
+
+  function checkAnswers() {
+    console.log('check answers')
+  }
+
+  function playAgain() {
+    console.log('play again')
   }
 
   function getQuestionsFromAPI() {
@@ -55,10 +64,19 @@ export default function App() {
           </div>
         }
         {quizStarted && questionsElements}
+
         <button onClick={() => {
-          startQuiz()
-          getQuestionsFromAPI()
-        }}>Start quiz</button>
+          !quizStarted && !quizEnded && startQuiz()
+          !quizStarted && !quizEnded && getQuestionsFromAPI()
+          quizStarted && checkAnswers()
+          quizEnded && playAgain()
+        }}>
+          {`${!quizStarted && !quizEnded && 'Start quiz' ||
+            quizStarted && 'Check answers' ||
+            quizEnded && 'Play again'
+            }`}
+        </button>
+
       </main>
 
 
