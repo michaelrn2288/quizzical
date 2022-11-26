@@ -58,6 +58,20 @@ main {
   margin: 1rem;
 }
 
+.result-btn-container{
+  display: flex;
+  align-items: center;
+  margin-top: 0.6rem;
+  gap: 2rem;
+}
+
+.result {
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
 button {
   background-color: var(--blue-medium);
   color: white;
@@ -66,7 +80,7 @@ button {
   font-size: 1rem;
   height: 3rem;
   width: 12rem;
-  margin-top: 0.6rem;
+
   cursor: pointer;
   transition: 0.3s;
 }

@@ -10,6 +10,8 @@ export default function App() {
   const [quizWillStart, setQuizWillStart] = React.useState(false)
   const [quizStarted, setQuizStarted] = React.useState(false)
   const [quizEnded, setQuizEnded] = React.useState(false)
+  const [checkAnswer, setCheckAnswer] = React.useState(false)
+  const [rightAnswers, setRightAnswers] = React.useState(0)
 
   const questionsElements = questions && questions.map((question, index) => {
     return (
@@ -20,6 +22,8 @@ export default function App() {
         key={index}
         id={index}
         quizEnded={quizEnded}
+        checkAnswer={checkAnswer}
+        setRightAnswers={setRightAnswers}
       />)
   })
 
@@ -33,6 +37,7 @@ export default function App() {
 
   function checkAnswers() {
     setQuizEnded(true)
+    setCheckAnswer(true)
   }
 
   function playAgain() {
@@ -48,7 +53,6 @@ export default function App() {
         return response.json()
       })
       .then(data => {
-        console.log(data.results)
         setQuestions(data.results)
       })
       .catch(error => console.error(error))
@@ -66,20 +70,26 @@ export default function App() {
         }
         {quizStarted && questionsElements}
 
-        <button onClick={() => {
-          !quizStarted && !quizEnded && startQuiz()
-          !quizStarted && !quizEnded && getQuestionsFromAPI()
-          quizStarted && checkAnswers()
-          quizEnded && playAgain()
-        }}>
-          {`${!quizStarted && !quizEnded && 'Start quiz' ||
-            quizStarted && 'Check answers' ||
-            quizEnded && 'Play again'
-            }`}
-        </button>
+        <div className='result-btn-container'>
+
+        <div className='result'>
+          {`${quizEnded && `You scored ${rightAnswers}/5 correct answers` || ''}`}
+        </div>
+
+          <button onClick={() => {
+            !quizStarted && !quizEnded && startQuiz()
+            !quizStarted && !quizEnded && getQuestionsFromAPI()
+            quizStarted && checkAnswers()
+            quizEnded && playAgain()
+          }}>
+            {`${!quizStarted && !quizEnded && 'Start quiz' ||
+              quizStarted && 'Check answers' ||
+              quizEnded && 'Play again'
+              }`}
+          </button>
+        </div>
 
       </main>
-
 
       <img src={yellowOrnament} className='yellow-ornament' />
       <img src={blueOrnament} className='blue-ornament' />

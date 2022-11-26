@@ -46,6 +46,19 @@ export default function Question(props) {
         )
     }
 
+    function checkAnswers() {
+        props.setRightAnswers(prevState => {
+            return answers.map(answer => answer.isCorrect && answer.isSelected).includes(true) ?
+                prevState + 1 :
+                prevState
+        })
+    }
+
+    React.useEffect(() => {
+        props.checkAnswer && checkAnswers()
+
+    }, [props.quizEnded])
+
     const answerElements = answers.map(answer => {
         return (
             <Answer
