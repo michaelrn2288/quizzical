@@ -56,7 +56,6 @@ export default function Question(props) {
 
     React.useEffect(() => {
         props.checkAnswer && checkAnswers()
-
     }, [props.quizEnded])
 
     const answerElements = answers.map(answer => {

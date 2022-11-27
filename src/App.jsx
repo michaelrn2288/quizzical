@@ -28,10 +28,11 @@ export default function App() {
   })
 
   function startQuiz() {
-    setQuizWillStart(prevState => !prevState)
+    setQuizWillStart(true)
     setTimeout(() => {
-      setQuizStarted(prevState => !prevState)
-      setQuizWillStart(prevState => !prevState)
+      setQuizStarted(true)
+      setQuizWillStart(false)
+      getQuestionsFromAPI()
     }, 600)
   }
 
@@ -43,10 +44,7 @@ export default function App() {
   function playAgain() {
     setQuizStarted(false)
     setQuizEnded(false)
-    setTimeout(() => {
-      getQuestionsFromAPI()
-      setQuizStarted(true)
-    }, 600)
+    startQuiz()
   }
 
   function getQuestionsFromAPI() {
@@ -82,10 +80,9 @@ export default function App() {
           </div>
 
           <button onClick={() => {
-            !quizStarted && !quizEnded && startQuiz()
-            !quizStarted && !quizEnded && getQuestionsFromAPI()
-            quizStarted && !quizEnded && checkAnswers()
-            quizEnded && playAgain()
+            !quizStarted && !quizEnded ? startQuiz() : undefined
+            quizStarted && !quizEnded ? checkAnswers() : undefined
+            quizEnded ? playAgain() : undefined
           }}>
             {`${!quizStarted && !quizEnded && 'Start quiz' ||
               quizStarted && !quizEnded && 'Check answers' ||

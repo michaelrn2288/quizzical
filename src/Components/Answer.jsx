@@ -24,7 +24,7 @@ export default function Answer(props) {
                 ${props.isSelected && 'selected'}
                 ${props.quizEnded && 'blocked'}
                 `}
-            onClick={!props.quizEnded && (() => props.selectAnswer(props.id))}
+            onClick={!props.quizEnded ? (() => props.selectAnswer(props.id)) : undefined}
         >
             {props.answer}
         </div>
