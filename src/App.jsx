@@ -41,7 +41,12 @@ export default function App() {
   }
 
   function playAgain() {
-    console.log('play again')
+    setQuizStarted(false)
+    setQuizEnded(false)
+    setTimeout(() => {
+      getQuestionsFromAPI()
+      setQuizStarted(true)
+    }, 600)
   }
 
   function getQuestionsFromAPI() {
@@ -72,18 +77,18 @@ export default function App() {
 
         <div className='result-btn-container'>
 
-        <div className='result'>
-          {`${quizEnded && `You scored ${rightAnswers}/5 correct answers` || ''}`}
-        </div>
+          <div className='result'>
+            {`${quizEnded && `You scored ${rightAnswers}/5 correct answers` || ''}`}
+          </div>
 
           <button onClick={() => {
             !quizStarted && !quizEnded && startQuiz()
             !quizStarted && !quizEnded && getQuestionsFromAPI()
-            quizStarted && checkAnswers()
+            quizStarted && !quizEnded && checkAnswers()
             quizEnded && playAgain()
           }}>
             {`${!quizStarted && !quizEnded && 'Start quiz' ||
-              quizStarted && 'Check answers' ||
+              quizStarted && !quizEnded && 'Check answers' ||
               quizEnded && 'Play again'
               }`}
           </button>
