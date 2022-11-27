@@ -20,6 +20,7 @@ html {
 body {
   background: rgba(245, 247, 251, 1);
   padding: 0;
+  margin: 0;
   display: flex;
   height: 100%;
   overflow: hidden;
@@ -108,19 +109,38 @@ button:hover {
   z-index: -1;
 }
 
+.yellow-ornament.contracted {
+  transition: 2s;
+  right: -3rem;
+  top: -3rem;
+}
+.blue-ornament.contracted {
+  transition: 2s;
+  left: -3rem;
+  bottom: -3rem;
+}
+
 .will-fade, .will-fade>* {
+  position: absolute;
   opacity: 0;
   transition: 0.5s;
   font-size: 0;
 }
 
 @keyframes re-enter-button{
-  from {
+  0% {
     height: 0;
       opacity: 0;
       border: none;
   }
-  to {
+  
+  50% {
+    height: 0;
+      opacity: 0;
+      border: none;
+  }
+
+  100% {
       opacity: 1;
   }
 }

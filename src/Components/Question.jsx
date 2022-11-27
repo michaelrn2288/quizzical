@@ -74,7 +74,7 @@ export default function Question(props) {
 
     return (
         <div className='question-container'>
-            <span className='question'>{decode(props.question, { level: 'html5' })}</span>
+            <div className='question'>{decode(props.question, { level: 'html5' })}</div>
             <section className='answer-container'>
                 {answerElements}
             </section>

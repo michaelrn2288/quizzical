@@ -6,12 +6,13 @@ import Question from './Components/Question'
 
 export default function App() {
 
-  const [questions, setQuestions] = React.useState()
+  const [questions, setQuestions] = React.useState([])
   const [quizWillStart, setQuizWillStart] = React.useState(false)
   const [quizStarted, setQuizStarted] = React.useState(false)
   const [quizEnded, setQuizEnded] = React.useState(false)
   const [checkAnswer, setCheckAnswer] = React.useState(false)
   const [rightAnswers, setRightAnswers] = React.useState(0)
+  const [hasQuizRunned, setHasQuizRunned] = React.useState(false)
 
   const questionsElements = questions && questions.map((question, index) => {
     return (
@@ -30,6 +31,7 @@ export default function App() {
   function startQuiz() {
     setQuizWillStart(true)
     setTimeout(() => {
+      setHasQuizRunned(true)
       setQuizStarted(true)
       getQuestionsFromAPI()
       setQuizWillStart(false)
@@ -42,6 +44,7 @@ export default function App() {
   }
 
   function playAgain() {
+    setQuestions([])
     setQuizStarted(false)
     setQuizEnded(false)
     startQuiz()
@@ -71,7 +74,10 @@ export default function App() {
             <div className='instructions'>Take a quiz and try to correctly answer the questions!</div>
           </div>
         }
-        {quizStarted && questionsElements}
+        
+        <div className='questions-container'>
+          {quizStarted && questionsElements}
+        </div>
 
         <div className='result-btn-container'>
 
@@ -99,8 +105,8 @@ export default function App() {
 
       </main>
 
-      <img src={yellowOrnament} className='yellow-ornament' />
-      <img src={blueOrnament} className='blue-ornament' />
+      <img src={yellowOrnament} className={`yellow-ornament ${hasQuizRunned && 'contracted'}`} />
+      <img src={blueOrnament} className={`blue-ornament ${hasQuizRunned && 'contracted'}`}  />
     </div>
   )
 }
