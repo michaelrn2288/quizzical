@@ -31,8 +31,8 @@ export default function App() {
     setQuizWillStart(true)
     setTimeout(() => {
       setQuizStarted(true)
-      setQuizWillStart(false)
       getQuestionsFromAPI()
+      setQuizWillStart(false)
     }, 600)
   }
 
@@ -79,16 +79,22 @@ export default function App() {
             {`${quizEnded && `You scored ${rightAnswers}/5 correct answers` || ''}`}
           </div>
 
-          <button onClick={() => {
-            !quizStarted && !quizEnded ? startQuiz() : undefined
-            quizStarted && !quizEnded ? checkAnswers() : undefined
-            quizEnded ? playAgain() : undefined
-          }}>
-            {`${!quizStarted && !quizEnded && 'Start quiz' ||
-              quizStarted && !quizEnded && 'Check answers' ||
-              quizEnded && 'Play again'
-              }`}
-          </button>
+          {!quizWillStart &&
+            <button
+              onClick={() => {
+                !quizStarted && !quizEnded ? startQuiz() : undefined
+                quizStarted && !quizEnded ? checkAnswers() : undefined
+                quizEnded ? playAgain() : undefined
+              }}
+
+              className={`${quizStarted && 're-enter-button'}`}
+            >
+              {`${!quizStarted && !quizEnded && 'Start quiz' ||
+                quizStarted && !quizEnded && 'Check answers' ||
+                quizEnded && 'Play again'
+                }`}
+            </button>
+          }
         </div>
 
       </main>
